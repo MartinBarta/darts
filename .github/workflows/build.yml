@@ -20,10 +20,18 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Build DartsApp
+      - name: Archive iOS App
         run: |
-          xcodebuild clean build \
-            -project DartsApp.xcodeproj \
-            -scheme DartsApp \
-            -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO
+          xcodebuild clean archive \
+          -project DartsApp.xcodeproj \
+          -scheme DartsApp \
+          -configuration Release \
+          -destination 'generic/platform=iOS' \
+          -archivePath $PWD/build/DartsApp.xcarchive
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+          -archivePath $PWD/build/DartsApp.xcarchive \
+          -exportOptionsPlist ExportOptions.plist \
+          -exportPath $PWD/build
