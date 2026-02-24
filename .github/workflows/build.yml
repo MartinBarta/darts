@@ -25,5 +25,5 @@ jobs:
           xcodebuild clean build \
             -project DartsApp.xcodeproj \
             -scheme DartsApp \
-            -destination 'generic platform=iOS Simulator' \
+            -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO
