@@ -27,7 +27,9 @@ jobs:
           -scheme DartsApp \
           -configuration Release \
           -destination 'generic/platform=iOS' \
-          -archivePath $PWD/build/DartsApp.xcarchive
+          -archivePath $PWD/build/DartsApp.xcarchive \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGNING_REQUIRED=NO
 
       - name: Export IPA
         run: |
